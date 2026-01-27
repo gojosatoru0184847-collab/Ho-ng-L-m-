@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>VECTOR-GL2-ENGINE • WebGL2 2D High Performance</title>
+  <style>
+    html,body{margin:0;height:100%;background:#070a10;color:#d7e3ff;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
+    #wrap{height:100%;display:grid;grid-template-rows:auto 1fr}
+    header{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)}
+    header .left{display:flex;gap:10px;align-items:center}
+    .pill{font-size:12px;padding:4px 8px;border:1px solid rgba(255,255,255,.12);border-radius:999px;color:#b8c7e6}
+    .btn{appearance:none;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#e8f0ff;border-radius:10px;padding:8px 10px;font-weight:600}
+    .btn:active{transform:translateY(1px)}
+    #hud{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    #c{width:100%;height:100%;display:block;touch-action:none}
+    #toast{position:fixed;left:12px;bottom:12px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.12);padding:10px 12px;border-radius:12px;backdrop-filter:blur(8px);max-width:min(520px,calc(100vw - 24px));font-size:13px;line-height:1.35;color:#d7e3ff}
+    #toast b{color:#fff}
+  </style>
+</head>
+<body>
+<div id="wrap">
+  <header>
+    <div class="left">
+      <b>VECTOR-GL2-ENGINE</b>
+      <span class="pill">WebGL2 • Instancing • Normal-Mapped Lights • IK • Particles</span>
+    </div>
+    <div id="hud">
+      <button id="toggleStress" class="btn">Stress: OFF</button>
+      <button id="toggle120" class="btn">Cap: 120</button>
+      <span id="stats" class="pill">…</span>
+    </div>
+  </header>
+  <canvas id="c"></canvas>
+</div>
+<div id="toast">
+  <b>Controls</b>: Drag left side = move 🕹️ | Drag right side = aim light 🔦 | Tap = spawn particles 💥
+  <br/><b>Note</b>: Demo is a clean scaffold for a 12k-line engine. Heavy features (soft shadows GI, full shader graph) are stubbed with clear extension points.
+</div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
