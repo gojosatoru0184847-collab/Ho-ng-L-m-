@@ -5,8 +5,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Java JDK
         uses: actions/setup-java@v4
@@ -17,8 +16,11 @@ jobs:
       - name: Install Cordova
         run: npm install -g cordova
 
-      - name: Build APK
+      - name: Create Project and Build
         run: |
+          cordova create myApp com.vector.gl2 VectorGL2
+          cp index.html main.js constants.js config.xml myApp/www/
+          cp -r *.js myApp/www/
+          cd myApp
           cordova platform add android
           cordova build android --release
-          
