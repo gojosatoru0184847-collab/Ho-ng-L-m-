@@ -7,20 +7,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Java JDK
+      - name: Kiểm tra danh sách file
+        run: ls -R # Lệnh này để xem bạn đã up file đúng chỗ chưa
+
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Install Cordova
-        run: npm install -g cordova
-
-      - name: Create Project and Build
+      - name: Install Cordova & Build
         run: |
-          cordova create myApp com.vector.gl2 VectorGL2
-          cp index.html main.js constants.js config.xml myApp/www/
-          cp -r *.js myApp/www/
-          cd myApp
+          npm install -g cordova
+          cordova create demo com.vector.gl2 VectorApp
+          # Chép toàn bộ file của bạn vào thư mục build
+          cp -r * demo/www/ 
+          cd demo
           cordova platform add android
           cordova build android --release
