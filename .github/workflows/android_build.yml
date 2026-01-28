@@ -1,27 +1,26 @@
-name: Build Android APK
-on: [push]
+Tên : Xây dựng tệp APK Android
+trên : [đẩy]
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+việc làm :
+  xây dựng :
+    chạy trên : ubuntu-latest
+    các bước :
+      - sử dụng : actions/checkout@v4
 
-      - name: Kiểm tra danh sách file
-        run: ls -R # Lệnh này để xem bạn đã up file đúng chỗ chưa
+      - Tên : Cài đặt Java JDK
+        Sử dụng : actions/setup-java@v4
+        với :
+          phiên bản java : ' 17 '
+          phân phối : ' temurin '
 
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
+      - tên : Cài đặt Cordova
+        Chạy lệnh : `npm install -g cordova`
 
-      - name: Install Cordova & Build
-        run: |
-          npm install -g cordova
-          cordova create demo com.vector.gl2 VectorApp
-          # Chép toàn bộ file của bạn vào thư mục build
-          cp -r * demo/www/ 
-          cd demo
+      - Tên : Tạo dự án và xây dựng
+        chạy : |
+          cordova create myApp com.vector.gl2 VectorGL2
+          cp index.html main.js constants.js config.xml myApp/www/
+          cp -r *.js myApp/www/
+          cd myApp
           cordova platform add android
           cordova build android --release
