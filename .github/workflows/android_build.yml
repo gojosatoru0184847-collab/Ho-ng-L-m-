@@ -9,28 +9,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Java JDK
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
+          distribution: temurin
           java-version: "17"
-          distribution: "temurin"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
 
       - name: Install Cordova
         run: npm install -g cordova
 
-      - name: Create and build app
+      - name: Create Cordova App
         run: |
-          cordova create myApp com.vector.gl2 VectorGL2
-          cp index.html main.js constants.js config.xml myApp/www/
+          cordova create myApp com.engine.app EngineApp
+          rm -rf myApp/www/*
+          cp -r *.js index.html config.xml myApp/www/
           cd myApp
           cordova platform add android
-          cordova build android --release
+          cordova build android
+
+      - name: Find APK
+        run: |
+          find myApp -name "*.apk"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: android-apk
-          path: myApp/platforms/android/app/build/outputs/apk/release/*.apk
+          name: Engine-APK
+          path: myApp/**/*.apk
