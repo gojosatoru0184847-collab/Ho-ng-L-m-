@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.angerstickzombie.engine.GameView
+        android:id="@+id/gameView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <!-- Minimal HUD overlay -->
+    <LinearLayout
+        android:id="@+id/hud"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:background="#55000000">
+
+        <TextView
+            android:id="@+id/txtGold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gold: 0"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txtMana"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  Mana: 0"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txtWave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  Wave: 1"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+</FrameLayout>
