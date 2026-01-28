@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<widget id="com.vector.gl2game" version="1.0.0" xmlns="http://www.w3.org/ns/widgets">
-    <name>VectorGL2</name>
-    <description>Engine WebGL2 High Performance</description>
-    <content src="index.html" />
-    <access origin="*" />
-    <preference name="Orientation" value="landscape" />
-</widget>
