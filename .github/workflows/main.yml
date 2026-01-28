@@ -1,29 +1,36 @@
-name: Build Android APK
-on: [push]
+name: Build APK Android
+
+on:
+  push:
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Setup Java
-        uses: actions/setup-java@v3
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '11'
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
+          java-version: "17"
+          distribution: "temurin"
 
       - name: Install Cordova
         run: npm install -g cordova
 
-      - name: Build APK
+      - name: Create and build app
         run: |
+          cordova create myApp com.vector.gl2 VectorGL2
+          cp index.html main.js constants.js config.xml myApp/www/
+          cd myApp
           cordova platform add android
           cordova build android --release
-          
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-apk
+          path: myApp/platforms/android/app/build/outputs/apk/release/*.apk
